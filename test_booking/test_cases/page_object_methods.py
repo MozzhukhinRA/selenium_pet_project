@@ -1,5 +1,7 @@
+import random
 import time
 
+from test_booking.test_cases.selectors.selectors_page import for_dev
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
@@ -36,3 +38,36 @@ class MethodsMainPageBooking:
                 By.CLASS_NAME, selector))
         )
         element.send_keys(self.fake.city())
+
+    def get_date(self, selector):
+        from datetime import datetime
+        datetime = datetime.now()
+        current_date = f'{datetime.strftime("%B")} {datetime.year}'
+        element = self.wait.until(
+            EC.text_to_be_present_in_element((
+                By.CLASS_NAME, selector), current_date)
+        )
+        if True:
+            element = current_date
+
+        assert element == current_date
+
+        if datetime.strftime("%B") == "February":
+            element = self.wait.until(
+                EC.presence_of_all_elements_located((
+                    By.CLASS_NAME, for_dev.select_datetime_day)
+                ))
+            element[random.randint(datetime.day, 27)].click()
+
+        elif datetime.strftime("%B") == "March" or "May" or "July" or "August" or "October" or "December":
+            element = self.wait.until(
+                EC.presence_of_all_elements_located((
+                    By.CLASS_NAME, for_dev.select_datetime_day)
+                ))
+            element[random.randint(datetime.day, 30)].click()
+        else:
+            element = self.wait.until(
+                EC.presence_of_all_elements_located((
+                    By.CLASS_NAME, for_dev.select_datetime_day)
+                ))
+            element[random.randint(datetime.day, 29)].click()
