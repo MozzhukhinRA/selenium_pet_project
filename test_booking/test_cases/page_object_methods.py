@@ -2,7 +2,6 @@ import random
 import time
 
 from test_booking.test_cases.selectors.selectors_page import for_dev
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -52,14 +51,15 @@ class MethodsMainPageBooking:
 
         assert element == current_date
 
-        if datetime.strftime("%B") == "February":
+        if datetime.strftime("%B") in "February":
             element = self.wait.until(
                 EC.presence_of_all_elements_located((
                     By.CLASS_NAME, for_dev.select_datetime_day)
                 ))
             element[random.randint(datetime.day, 27)].click()
 
-        elif datetime.strftime("%B") == "March" or "May" or "July" or "August" or "October" or "December":
+        elif datetime.strftime(
+                "%B") in ["March", "May", "July", "August", "October", "December"]:
             element = self.wait.until(
                 EC.presence_of_all_elements_located((
                     By.CLASS_NAME, for_dev.select_datetime_day)

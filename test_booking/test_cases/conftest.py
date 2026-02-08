@@ -6,9 +6,19 @@ def driver():
     from selenium import webdriver
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
+    from selenium.webdriver.chrome.options import Options
 
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    driver.set_window_size(1920, 1080)
+    chrome_options = Options()
+
+    prefs = {
+        "intl.accept_languages": "en-US,en",
+    }
+    chrome_options.add_experimental_option("prefs", prefs)
+
+    service = ChromeService(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.maximize_window()
 
     yield driver
+
     driver.quit()
