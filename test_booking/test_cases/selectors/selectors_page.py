@@ -9,6 +9,8 @@ class SelectorBookingMainPage:
     select_city_on_list = 'e03644d405:nth-child(1)'
     select_datetime_moth = 'af236b7586:nth-child(1)'
     select_datetime_day = 'ecb788f3b7'
+    select_button_search = 'a9d40b8d51'
+    select_lable_after_search = 'cacb5ff522'
 
 
 selector = SelectorBookingMainPage

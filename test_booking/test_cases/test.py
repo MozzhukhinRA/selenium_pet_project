@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
@@ -30,3 +32,9 @@ def test_case_1(driver):
 
     with allure.step('Assert datetime should have current date'):
         case.get_date(selector.select_datetime_moth)
+
+    with allure.step('Tap to search'):
+        case.fiend_element_for_click_with_wait(selector.select_button_search)
+
+    with allure.step('Opening page after search'):
+        case.element_should_be_visible(selector.select_lable_after_search)

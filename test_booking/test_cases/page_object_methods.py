@@ -36,7 +36,9 @@ class MethodsMainPageBooking:
             EC.visibility_of_element_located((
                 By.CLASS_NAME, selector))
         )
-        element.send_keys(self.fake.city())
+        city_name = self.fake.city()
+        element.send_keys(city_name)
+        return city_name
 
     def get_date(self, selector):
         from datetime import datetime
@@ -71,3 +73,8 @@ class MethodsMainPageBooking:
                     By.CLASS_NAME, for_dev.select_datetime_day)
                 ))
             element[random.randint(datetime.day, 29)].click()
+
+    def element_should_be_visible(self, selector):
+        self.wait.until(EC.visibility_of_element_located((
+            By.CLASS_NAME, selector)
+        ))
