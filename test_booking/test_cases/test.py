@@ -5,7 +5,7 @@ import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 
 from test_booking.test_cases.page_object_methods import MethodsMainPageBooking
-from test_booking.test_cases.selectors.selectors_page import selector
+from test_booking.test_cases.selectors_site.selectors_page import selector
 
 
 @pytest.mark.usefixtures('driver')
@@ -19,7 +19,7 @@ def test_case_1(driver):
         case.fiend_element_for_click_with_wait(selector.select_popup_reg)
 
     with allure.step('To close modal window reg'):
-        case.fiend_element_for_click_with_wait(selector.select_popup_cookies)
+        case.fiend_element_id_for_click_with_wait(selector.select_popup_cookies)
 
     with allure.step('Tap on field city'):
         case.fiend_element_for_click_with_wait(selector.select_field_city)

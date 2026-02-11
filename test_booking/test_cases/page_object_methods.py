@@ -1,14 +1,13 @@
 import random
 import time
-
-from test_booking.test_cases.selectors.selectors_page import for_dev
+from test_booking.test_cases.selectors_site.selectors_page import for_dev
 from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from test_booking.test_cases.conftest import driver
-from test_booking.test_cases.selectors.selectors_page import selector
+from test_booking.test_cases.selectors_site.selectors_page import selector
 from faker import Faker
 
 
@@ -28,6 +27,13 @@ class MethodsMainPageBooking:
         element = self.wait.until(
             EC.element_to_be_clickable((
                 By.CLASS_NAME, selector))
+        )
+        element.click()
+
+    def fiend_element_id_for_click_with_wait(self, selector):
+        element = self.wait.until(
+            EC.element_to_be_clickable((
+                By.ID, selector))
         )
         element.click()
 
